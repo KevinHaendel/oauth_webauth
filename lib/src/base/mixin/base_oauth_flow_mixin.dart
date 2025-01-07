@@ -26,10 +26,8 @@ mixin BaseOAuthFlowMixin on BaseFlowMixin {
       onCancel: configuration.onCancel,
     );
 
-    if (kIsWeb) {
-      codeVerifier = OAuthWebAuth.instance.restoreCodeVerifier() ??
-          OAuthWebAuth.instance.generateCodeVerifier();
-    }
+    codeVerifier = OAuthWebAuth.instance.restoreCodeVerifier() ??
+        OAuthWebAuth.instance.generateCodeVerifier();
 
     authorizationCodeGrant = oauth2.AuthorizationCodeGrant(
       configuration.clientId,
